@@ -54,6 +54,14 @@ Tool for inspecting GoodData Ruby Platform environment
 
 Placeholder for your application
 
+***Output***
+
+```
+2015-02-10 16:36:08.304-0500 [INFO]: request_id=123456 action=jvmscript status=SCRIPT_EXEC
+2015-02-10 16:36:39.016-0500 [INFO]: request_id=123456 GoodData::VERSION = 0.6.10
+2015-02-10 16:36:39.021-0500 [INFO]: request_id=123456 action=jvmscript status=SCRIPT_OK
+```
+
 ### pack.sh
 
 Tool for packaging ruby script for deployment easily.
