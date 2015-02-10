@@ -21,6 +21,11 @@ Test project for grache
 
 Tool for inspecting GoodData Ruby Platform environment
 
+***Output***
+
+```
+```
+
 ### main.rb
 
 Placeholder for your application
