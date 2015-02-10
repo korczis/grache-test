@@ -56,7 +56,17 @@ Placeholder for your application
 
 ### pack.sh
 
-Tool for packaging ruby script for deployment easily
+Tool for packaging ruby script for deployment easily.
+
+```
+tomaskorcak@kx-mac:~/dev/grache-test$ ./pack.sh
+  adding: Gemfile (deflated 65%)
+  adding: Gemfile.lock (deflated 66%)
+  adding: inspect.rb (deflated 36%)
+  adding: main.rb (deflated 22%)
+  adding: stub.rb (deflated 47%)
+tomaskorcak@kx-mac:~/dev/grache-test$
+```
 
 ### stub.rb
 
