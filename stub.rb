@@ -1,21 +1,26 @@
 #! /usr/bin/env ruby
 
-require 'rubygems'
-require 'rubygems/commands/install_command'
-
 # Gem install grache if needed
 # unless system('gem query -i -n grache > /dev/null')
 # end
 
-cmd = Gem::Commands::InstallCommand.new
-cmd.handle_options ["--no-ri", "--no-rdoc", 'grache']
-begin
-  cmd.execute
-rescue Gem::SystemExitException => e
-  puts "DONE: #{e.exit_code}"
-end
 
-require 'grache' rescue LoadError
+
+GEM_CMD = RUBY_PLATFORM == 'java' ? 'jruby -S gem' : 'gem'
+
+puts `#{GEM_CMD} install bundler`
+
+require 'rubygems'
+require 'rubygems/commands/install_command'
+
+# See https://gist.github.com/adamjmurray/3154437
+puts `#{GEM_CMD} install grache`
+
+begin
+  require 'grache'
+rescue LoadError => e
+  puts e.inspect
+end
 
 puts "Using grache version #{Grache::VERSION}"
 
