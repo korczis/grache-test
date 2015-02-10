@@ -4,7 +4,7 @@ Test project for grache
 
 ## Structure
 
-- inspect.rb
+- [inspect.rb](#inspectrb)
 - main.rb
 - pack.sb
 - stub.rb
