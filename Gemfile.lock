@@ -19,7 +19,7 @@ GIT
       salesforce_bulk_query
 
 PATH
-  remote: vendor/cache/gooddata_connectors_metadata
+  remote: ../gooddata_connectors_metadata
   specs:
     gooddata_connectors_metadata (0.0.1)
       aws-sdk
