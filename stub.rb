@@ -4,16 +4,18 @@
 # unless system('gem query -i -n grache > /dev/null')
 # end
 
-
+puts "GEM_HOME = #{ENV['GEM_HOME']}"
 
 GEM_CMD = RUBY_PLATFORM == 'java' ? 'jruby -S gem' : 'gem'
 
+puts 'Installing bundler'
 puts `#{GEM_CMD} install bundler`
 
 require 'rubygems'
 require 'rubygems/commands/install_command'
 
 # See https://gist.github.com/adamjmurray/3154437
+puts 'Installing grache'
 puts `#{GEM_CMD} install grache`
 
 begin
