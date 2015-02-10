@@ -1,9 +1,18 @@
 #! /usr/bin/env ruby
 
 require 'rubygems'
+require 'rubygems/commands/install_command'
 
-# Gem install grache
-system 'gem install grache' unless system('gem query -i -n grache > /dev/null')
+# Gem install grache if needed
+unless system('gem query -i -n grache > /dev/null')
+  cmd = Gem::Commands::InstallCommand.new
+  cmd.handle_options ["--no-ri", "--no-rdoc", 'grache']
+  begin
+    cmd.execute
+  rescue Gem::SystemExitException => e
+    puts "DONE: #{e.exit_code}"
+  end
+end
 
 require 'grache'
 
