@@ -5,9 +5,9 @@ Test project for grache
 ## Structure
 
 - [inspect.rb](#inspectrb)
-- main.rb
-- pack.sb
-- stub.rb
+- [main.rb](#mainrb)
+- [pack.sh](#packsh)
+- [stub.rb](#stubrb)
 
 ## Getting started
 
