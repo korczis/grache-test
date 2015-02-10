@@ -1,4 +1,4 @@
 # encoding: utf-8
 
-cmd = '/usr/lib/jvm/java -version'
+cmd = '/usr/bin/java -version'
 puts `#{cmd}`
