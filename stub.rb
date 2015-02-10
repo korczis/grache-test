@@ -22,6 +22,7 @@ begin
   require 'grache'
 rescue LoadError => e
   puts e.inspect
+  raise e
 end
 
 puts "Using grache version #{Grache::VERSION}"

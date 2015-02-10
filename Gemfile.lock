@@ -18,8 +18,10 @@ GIT
       restforce
       salesforce_bulk_query
 
-PATH
-  remote: vendor/cache/gooddata_connectors_metadata
+GIT
+  remote: https://github.com/gooddata/gooddata_connectors_metadata.git
+  revision: 86f8943cf8f0633224fc72dd50636c0a31310dba
+  branch: bds_implementation
   specs:
     gooddata_connectors_metadata (0.0.1)
       aws-sdk

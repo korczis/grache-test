@@ -2,4 +2,4 @@
 
 require 'gooddata'
 
-puts GoodData::VERSION
+puts "GoodData::VERSION = #{GoodData::VERSION}"
