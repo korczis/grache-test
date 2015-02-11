@@ -1,52 +1,50 @@
 #! /usr/bin/env ruby
 
+require 'fileutils'
+
 require_relative 'core'
 
-# require 'rubygems'
+$SCRIPT_PARAMS ||= {}
 
-# grem('update --system')
-# grem('update bundler')
+FETCH_GEMS = $SCRIPT_PARAMS['FETCH_GEMS'] || true
 
-# grundler('install --gemfile=Gemfile.stub')
+repo_gems = [
+  'https://github.com/korczis/grache/archive/master.zip'
+]
 
-require 'bundler/cli'
-Bundler::CLI.new.invoke(:install, [], :gemfile => 'Gemfile.stub', :deployment => true, :verbose => true)
-require 'bundler/setup'
+if FETCH_GEMS
+  repo_gems.each do |repo_gem|
+    cmd = "curl -LOk --retry 3 #{repo_gem} 2>&1"
+    puts cmd
+    system(cmd)
 
-grash('cat .bundle/config')
+    repo_gem_file = repo_gem.split('/').last
 
-# grash('mkdir -p ~/.gem/jruby/1.9/ && cd ~/.gem/jruby/1.9 && ln -s /usr/share/ruby/gems/cache')
+    cmd = "unzip -o #{repo_gem_file} 2>&1"
+    puts cmd
+    system(cmd)
 
-# puts 'Installing bundler'
-# cmd = "install bundler"
-# grem(cmd)
-
-# See https://gist.github.com/adamjmurray/3154437
-# puts 'Installing grache'
-# cmd = "install --verbose grache"
-# grem(cmd)
-
-begin
-  require 'grache'
-rescue LoadError => e
-  puts e.inspect
-  raise e
+    FileUtils.rm repo_gem_file
+  end
 end
 
-puts "Using grache version #{Grache::VERSION}"
+grash('cp -a grache-master/lib/* .')
+
+require_relative 'grache'
+
+puts "Grache::VERSION = #{Grache::VERSION}"
 
 # Fetch grache pack
+Grache::Packer.new.install
+
+require 'bundler/cli'
 Grache::Packer.new.install()
-Bundler::CLI.new.invoke(:install, [], :gemfile => 'Gemfile.stub', :deployment => true, :verbose => true)
+Bundler::CLI.new.invoke(:install, [], :gemfile => 'Gemfile', :local => true, :deployment => true, :verbose => true)
+# require 'bundler/setup'
+
+grash('cat .bundle/config')
 
 # Show installed gems
 Bundler::CLI.new.invoke(:show, [], :verbose => true)
 
-# puts `find #{$GEM_PATH}`
-
-# require_relative './main.rb'
-
-# gruby('./main.rb')
-# Run main.rb
-# Bundler::CLI.new.invoke(:exec, [$JAVA_CMD, '-jar', $RUBY_CMD, './main.rb'], :verbose => true)
-# grundler('exec ruby main.rb')
+require_relative './main.rb'
