@@ -11,6 +11,9 @@ require_relative 'core'
 
 require 'bundler/cli'
 Bundler::CLI.new.invoke(:install, [], :gemfile => 'Gemfile.stub', :deployment => true, :verbose => true)
+require 'bundler/setup'
+
+grash('cat .bundle/config')
 
 # grash('mkdir -p ~/.gem/jruby/1.9/ && cd ~/.gem/jruby/1.9 && ln -s /usr/share/ruby/gems/cache')
 
@@ -39,7 +42,7 @@ Bundler::CLI.new.invoke(:install, [], :gemfile => 'Gemfile.stub', :deployment =>
 # Show installed gems
 Bundler::CLI.new.invoke(:show, [], :verbose => true)
 
-puts `find #{$GEM_PATH}`
+# puts `find #{$GEM_PATH}`
 
 # require_relative './main.rb'
 
