@@ -4,6 +4,8 @@ require 'gooddata'
 require 'json'
 require 'pp'
 
+require_relative 'core'
+
 puts "ARGV = #{JSON.pretty_generate(ARGV)}"
 puts ''
 
@@ -16,5 +18,9 @@ puts ''
 puts 'Listing home directory:'
 puts `ls -la ~`
 puts ''
+
+puts 'Listing gems'
+cmd = "list"
+grem(cmd)
 
 puts "GoodData::VERSION = #{GoodData::VERSION}"

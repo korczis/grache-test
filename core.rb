@@ -6,10 +6,11 @@ $BASH_CMD = `which bash`.strip
 $CURL_CMD = `which curl`.strip
 $BUNDLER_CMD = `which bundler`.strip
 $JAVA_CMD = `which java`.strip
+$JRUBY_CMD = '/usr/share/java/executor-wrapper/jruby-complete-1.7.12.jar'
 
 $RUBY_CMD = `which ruby`.strip
 if $RUBY_CMD.empty?
-  $RUBY_CMD = "#{$JAVA_CMD} -jar /usr/share/java/executor-wrapper/jruby-complete-1.7.12.jar"
+  $RUBY_CMD = "#{$JAVA_CMD} -jar #{$JRUBY_CMD}"
 end
 
 $GEM_CMD = `which gem`.strip
@@ -32,7 +33,8 @@ def grul(*args)
 end
 
 def grem(*args)
-  cmd = "GEM_HOME=#{$GEM_HOME} GEM_PATH=#{$GEM_PATH} #{$GEM_CMD} --debug #{args.join}"
+  # cmd = "GEM_HOME=#{$GEM_HOME} GEM_PATH=#{$GEM_PATH} #{$GEM_CMD} --debug #{args.join}"
+  cmd = "#{$GEM_CMD} --debug #{args.join}"
   puts "grem '#{cmd}'"
   res = grash(cmd)
   # puts "RES: #{res}"
