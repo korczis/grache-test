@@ -2,4 +2,4 @@
 
 require_relative 'core'
 
-grava('-version')
+gruby('-v')

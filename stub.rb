@@ -1,22 +1,22 @@
 #! /usr/bin/env ruby
 
-# Gem install grache if needed
-# unless system('gem query -i -n grache > /dev/null')
-# end
-
-puts "GEM_HOME = #{ENV['GEM_HOME']}"
-
-GEM_CMD = RUBY_PLATFORM == 'java' ? 'jruby -S gem' : 'gem'
-
-puts 'Installing bundler'
-puts `#{GEM_CMD} install bundler`
+require_relative 'core'
 
 require 'rubygems'
-require 'rubygems/commands/install_command'
+
+grem('update --system')
+grem('update bundler')
+
+# grash('mkdir -p ~/.gem/jruby/1.9/ && cd ~/.gem/jruby/1.9 && ln -s /usr/share/ruby/gems/cache')
+
+# puts 'Installing bundler'
+# cmd = "install bundler"
+# grem(cmd)
 
 # See https://gist.github.com/adamjmurray/3154437
 puts 'Installing grache'
-puts `#{GEM_CMD} install grache`
+cmd = "install --verbose grache"
+grem(cmd)
 
 begin
   require 'grache'
@@ -28,15 +28,12 @@ end
 puts "Using grache version #{Grache::VERSION}"
 
 # Fetch grache pack
-Grache::Packer.new.install()
-
-# Bundler hack
-require 'bundler/cli'
+# Grache::Packer.new.install()
 
 # Install gems required by main.rb
 # Bundler::CLI.new.invoke(:install, [], :verbose => false)
-system('bundle install')
+grundler('install')
 
 # Run main.rb
 # Bundler::CLI.new.invoke(:exec, ['ruby', 'main.rb'], :verbose => false)
-system('bundle exec ruby main.rb')
+grundler('exec ruby main.rb')
