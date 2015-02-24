@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'gooddata'
+gem 'rails'
+gem 'sinatra'
 
 # gem 'gooddata_connectors_metadata', :git => 'https://github.com/gooddata/gooddata_connectors_metadata.git', :branch => 'bds_implementation'
 # gem 'gooddata_connectors_base', :git => 'https://github.com/gooddata/gooddata_connectors_base.git', :branch => 's3'
